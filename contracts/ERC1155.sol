@@ -19,6 +19,15 @@ contract ERC1155 is
         __UUPSUpgradeable_init();
     }
 
+    function mint(
+        address account,
+        uint256 id,
+        uint256 amount,
+        bytes tokenUri
+    ) public {
+        _mint(account, id, amount, tokenUri);
+    }
+
     function mintBatch(
         address to,
         uint256[] memory ids,
@@ -47,15 +56,32 @@ contract ERC1155 is
         return tokenURI[id];
     }
 
-    function onERC1155Received(address, address, uint256, uint256, bytes memory) public virtual returns (bytes4) {
+    function onERC1155Received(
+        address,
+        address,
+        uint256,
+        uint256,
+        bytes memory
+    ) public virtual returns (bytes4) {
         return this.onERC1155Received.selector;
     }
 
-    function onERC1155BatchReceived(address, address, uint256[] memory, uint256[] memory, bytes memory) public virtual returns (bytes4) {
+    function onERC1155BatchReceived(
+        address,
+        address,
+        uint256[] memory,
+        uint256[] memory,
+        bytes memory
+    ) public virtual returns (bytes4) {
         return this.onERC1155BatchReceived.selector;
     }
 
-    function onERC721Received(address, address, uint256, bytes memory) public virtual returns (bytes4) {
+    function onERC721Received(
+        address,
+        address,
+        uint256,
+        bytes memory
+    ) public virtual returns (bytes4) {
         return this.onERC721Received.selector;
     }
 
